@@ -1,4 +1,4 @@
->>>>>>>>main.tf<<<<<<<<
+>>>>>>>>vpc.tf<<<<<<<<
 
 provider "aws" {
   region = "us-east-1"
