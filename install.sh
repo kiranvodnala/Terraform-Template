@@ -26,3 +26,6 @@ resource "aws_instance" "k8slave3" {
   key_name = "newkey"
   tags = {
     Name = "k8slave3"
+  }
+}  
+  
