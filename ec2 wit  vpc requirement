@@ -1,0 +1,4 @@
+create vpc with required component using terrraform
+AND deploy ec2 instance inside the vpc
+
+
