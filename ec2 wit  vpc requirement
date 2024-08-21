@@ -2,3 +2,38 @@ create vpc with required component using terrraform
 AND deploy ec2 instance inside the vpc
 
 
+
+provider "aws" {
+  region = "us-east-1"
+  access_key = "ACCESS KEY"
+  secret_key = "SECRET KEY"
+}
+
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+  instance_tenancy = "default"
+  tags = {
+    Name = "myvpc"
+  }
+}
+
+resource "aws_subnet" "public" {
+  vpc_id = aws_vpc.main.id
+  availability_zone = "us-east-1a"
+  cidr_block = "10.0.1.0/24"
+  map_public_ip_on_launch = "true"
+  tags = {
+    Name = "public-sub"
+  }
+}
+
+resource "aws_instance" "web-server" {
+  count = 1
+  ami = ""
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.public.id
+  tags = {
+    Name = "web-server"
+  }
+}
+
