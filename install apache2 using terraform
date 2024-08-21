@@ -1,0 +1,21 @@
+create script to install apache2 AND run this script and a newly  created ec2 instance
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "access key"
+  secret_key = "secret key"
+}
+
+resource "aws_instance" "asg5" {
+  count = 1
+  ami           =""
+  instance_type = "t2.micro"
+  key_name = "terraformkey"
+  user_data = "${file("install-apache2.sh")}"
+  tags = {
+    Name = "asg-5"
+  }
+}
+output "IPv4"{
+   value = aws_instance.asg5.public_ip
+}
