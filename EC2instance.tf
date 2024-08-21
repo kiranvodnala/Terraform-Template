@@ -4,6 +4,7 @@ provider "aws" {
   secret_key = "secret key"
 }
 resource "aws_instance" "k8slave1" {
+  count = 1
   ami           ="ami-003932de22c285676"
   instance_type = "t2.medium"
   key_name = "newkey"
@@ -13,6 +14,7 @@ resource "aws_instance" "k8slave1" {
 }
 
 resource "aws_instance" "k8slave2" {
+  count = 1
   ami           ="ami-003932de22c285676"
   instance_type = "t2.medium"
   key_name = "newkey"
