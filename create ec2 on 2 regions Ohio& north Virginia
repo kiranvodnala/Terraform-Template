@@ -1,0 +1,30 @@
+provider "aws" {
+  alias = "ohio"
+  region     = "us-east-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+provider "aws" {
+  alias = "NV"
+  region     = "us-east-1"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+resource "aws_instance" "asg3-1" {
+  provider = aws.ohio
+  ami           = "ohio.id"
+  instance_type = "t2.micro"
+  key_name = "terraform"
+  tags = {
+    Name = "Hello-ohio"
+  }
+}
+resource "aws_instance" "nv" {
+  provider = aws.NV
+  ami           = "nv ami id"
+  instance_type = "t2.micro"
+  key_name = "terraformkey"
+  tags = {
+    Name = "Hello-Nverginia"
+  }
+}
