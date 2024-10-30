@@ -5,8 +5,8 @@ AND deploy ec2 instance inside the vpc
 
 provider "aws" {
   region = "us-east-1"
-  access_key = "ACCESS KEY"
-  secret_key = "SECRET KEY"
+  access_key = ""
+  secret_key = ""
 }
 
 resource "aws_vpc" "main" {
