@@ -1,0 +1,25 @@
+provider "aws"{
+    region = "us-east-1"
+    access_key = ""
+    secret_key = ""
+}
+resource "aws_instance" "demo-server"{
+     ami = "ami-09040d770ffe2224f"
+     instance_type = "t2.micro"
+     key_name = ""
+     user_data = <<-EOF
+         #!/bin/bash
+         apt update -y
+         apt-get install apache2 -y
+         EOF
+     tags = {
+     Name = "assignment-5"
+     }
+}
+output "instance_ip"{
+  value = aws_instance.demo-server.public_ip
+}
+resource "local_file" "instance_ip_file"{
+   content = aws_instance.demo-server.public_ip
+   filename = "${path.module}/instance_ip.txt"
+}
