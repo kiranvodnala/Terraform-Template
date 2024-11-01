@@ -4,7 +4,7 @@ provider "aws"{
     secret_key = ""
 }
 resource "aws_instance" "demo-server"{
-     ami = "ami-09040d770ffe2224f"
+     ami = ""
      instance_type = "t2.micro"
      key_name = ""
      user_data = <<-EOF
@@ -13,7 +13,7 @@ resource "aws_instance" "demo-server"{
          apt-get install apache2 -y
          EOF
      tags = {
-     Name = "assignment-5"
+     Name = "demo-server"
      }
 }
 output "instance_ip"{
